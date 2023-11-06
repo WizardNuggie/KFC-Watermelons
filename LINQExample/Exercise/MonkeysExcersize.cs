@@ -157,48 +157,62 @@ namespace LINQ.Exercise
         //1
         public Monkey SearchMonkeyByName(string name)
         {
-
-            return null;
+            return Monkeys.Find(m => m.Name == name);
         }
         //2
         public List<Monkey> GetAllMonkeysPerLocation(string location)
         {
-            return null;
+            return Monkeys.Where(m => m.Location == location).ToList();
         }
         //3
         public bool IsThereMonkeyInThatLocation(string location)
         {
-            return false;
+            return Monkeys.Any(m => m.Location == location);
         }
         //4
         public List<Monkey> SortByLocattionAndName()
         {
 
-            return null;
+            return Monkeys.OrderBy(m => m.Location)
+                                                                            .ThenBy(m => m.Name).ToList() ;
         }
         //5
         public Monkey SearchMonkeyByNameQuery(string name)
         {
-            return null;
+            return (from m in this.Monkeys
+                        where m.Name == name
+                        select m).ToList().FirstOrDefault();
         }
         //6
         public List<Monkey> GetAllMonkeysPerLocationQuery(string location)
         {
-            return null;
+            return (from m in this.Monkeys
+                        where m.Location == location
+                        select m).ToList();
         }
 
         //7
         //bool desc true if the order is desc or asc
         public List<Monkey> SortByLocattionAndNameQuery(bool desc)
         {
-            return null;
+            return (from m in Monkeys
+                        orderby m.Location, m.Name
+                        select m).ToList();
         }
         //8
        
         public Monkey[] GetAllMonkeysByName(string name)
         {
-            return null;
+            return Monkeys.Where(m => m.Name == name).ToArray();
         }
-       
+        public override string ToString()
+        {
+            string result = "";
+            foreach (Monkey monkey in Monkeys)
+            {
+                result+="\n" + monkey;
+            }
+            return result;
+        }
     }
 }

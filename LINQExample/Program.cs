@@ -1,6 +1,7 @@
 ﻿using LINQExample.Extentions;
 using LINQExample.Models;
 using LINQ;
+using LINQ.Exercise;
 
 namespace LINQExample
 {
@@ -10,8 +11,9 @@ namespace LINQExample
 
         static void Main(string[] args)
         {
-            List<Student> students = new List<Student>();
-            students = Student.FillList();
-           
+            MonkeyList Monkeys = new MonkeyList();
+            Console.WriteLine(Monkeys);
+            Console.WriteLine(Monkeys.SortByLocattionAndName());
+        }
     }
 }
